@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Conversion</title>
+</head>
+<body>
+	<h1> <font color="Green"> Farenheit to Celsius Converter </font></h1>
+    <p>
+        <label>Fahrenheit</label>
+        <input id="inputFahrenheit" type="number" placeholder="Fahrenheit"
+        oninput="farenConverter(this.value)"
+        onchange="farenConverter(this.value)">
+      </p>
+      <p>Celsius: <span id="outputCelsius"></span></p>
+
+
+    <script>
+        function farenConverter(valNum) {
+            valNum = parseFloat(valNum);
+            document.getElementById("outputCelsius").innerHTML = ((valNum-32) / 1.8).toFixed;
+            }
+    </script>
+
+  <button><a href="index.html">Back to Home Page</a></button>
+ 
+</body>
+</html>
