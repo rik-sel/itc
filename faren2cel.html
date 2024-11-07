@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Conversion</title>
+</head>
+<body>
+	<h1> <font color="Green"> Celsius to Fahrenheit Converter </font></h1>
+    
+	
+      <p>
+        <label>Celsius</label>
+        <input id="inputCelsius" type="number" placeholder="Celsius"
+        oninput="celsConverter(this.value)"
+        onchange="celsConverter(this.value)">
+      </p>
+      <p>Fahrenheit: <span id="outputFarenheit"></span> °F</p>
+
+      <button><a href="index.html">Back to Home Page</a></button>
+    <script>
+            function celsConverter(valNum) {
+            valNum = parseFloat(valNum);
+            document.getElementById("outputFarenheit").innerHTML = ((valNum*(9/5)) + 32).toFixed(2);
+            }
+        
+
+    </script>
+ 
+</body>
+</html>
