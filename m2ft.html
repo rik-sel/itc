@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Conversion</title>
+</head>
+<body>
+	<h1> <font color="Green"> Meters to Feet Converter </font></h1>
+    
+	
+      <p>
+        <label>Meters</label>
+        <input id="inputMeters" type="number" placeholder="Meters"
+        oninput="meterConverter(this.value)"
+        onchange="meterConverter(this.value)">
+      </p>
+      <p>Feet: <span id="outputFeet"></span> ft.</p>
+
+      <button><a href="index.html">Back to Home Page</a></button>
+    <script>
+            function meterConverter(valNum) {
+            valNum = parseFloat(valNum);
+            document.getElementById("outputFeet").innerHTML = (valNum*3.28084).toFixed(2);
+            }
+        
+
+    </script>
+ 
+</body>
+</html>
