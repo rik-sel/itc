@@ -28,17 +28,14 @@
       var nlimit,count,ntext;
 
       nlimit = document.getElementById("nlimit").value;
-      ntext="";
+      ntext=1;
       count=1;
       while (count <= nlimit) {
-          if(nlimit % count == 0){
-              ntext += count+" ";
-          }
-           count++;
+          ntext = ntext*count;
       }
   
       document.getElementById("ntitle").innerHTML=
-        "The factors of "+nlimit+" are:";
+        "The " + nlimit + "factorial is ";
   
       document.getElementById("nnumbers").innerHTML=
          ntext;
