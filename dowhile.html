@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1> <font color: green>Print N Natural Numbers using a For Loop</font></h1>
+<br>
+
+<br>
+<p>
+<label for="nlimit">Input a value for n:</label>
+<input id="nlimit" type="number"></input>
+<button id="btnshownumbers">Show Numbers</button>
+<br>
+<a href="index.html">Back to Home Page</a>
+</p>
+<h3 id="ntitle"></h3>
+<p id="nnumbers"></p>
+<p id="ntotal"></p>
+<p id="navg"></p>
+<script>
+
+ document.getElementById("btnshownumbers").addEventListener("click", () => {    
+    var nlimit,i,ntext,ntotal;navg;
+    nlimit = document.getElementById("nlimit").value;
+    ntext="";
+    i=1;
+    ntotal = 0;
+    do {
+        ntotal += i;
+        ntext += i+" ";
+        i++
+    } while (i <=nlimit);
+
+    navg = ntotal/nlimit;
+
+    document.getElementById("ntitle").innerHTML=
+      "The first "+nlimit+" natural numbers are:";
+
+    document.getElementById("nnumbers").innerHTML=
+       ntext;
+
+    document.getElementById("ntotal").innerHTML=
+        "Total:"+ntotal;
+
+    document.getElementById("navg").innerHTML=
+        "Average: "+navg;
+
+} );   
+</script>
+</body>
+
+</html>
