@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <h1>Income Tax Calculator</h1>
+
+        <label>Taxable Income</label>
+    
+        <input type = "number" id = "ti" onkeyup= "computeTax()">
+
+        <br>
+
+        <label> Income Tax: </label>
+        <input type = "number" id = "incometax" readonly>
+
+
+    <script>
+            function computeTax(){
+                let basictax,brackttax, totaltax, incometax;
+
+                incometax = document.getElementById("ti").value * 1;
+
+
+                if (incometax < 250000){
+                    basictax = 0;
+                    brackttax = 0;
+                }
+
+                else if(incometax >=250000 && incometax < 400000){
+                    basictax = 0;
+                    brackttax = 0.20*(incometax-250000);
+                }
+
+                else if(incometax >=400000 && incometax < 800000){
+                    basictax = 0;
+                    brackttax = 0.25*(incometax-400000);
+                }
+                else if(incometax >=800000 && incometax <2000000){
+                    basictax = 0;
+                    brackttax = 0.3*(incometax-800000);
+                }
+                else if(incometax >=2000000 && incometax < 8000000){
+                    basictax = 0;
+                    brackttax = 0.32*(incometax-2000000);
+                }
+                else{
+                    basictax = 0;
+                    brackttax = 0.35*(incometax-8000000);
+                }
+
+
+                totaltax=Math.round((basictax+brackttax*100)/100);
+                console.log(totaltax);
+                document.getElementById("incometax").value = totaltax;
+
+            }
+
+    </script>
+    </body>
+    
+
+
+
+
+</html>
