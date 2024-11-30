@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Payroll Management System</title>
+    <style>
+
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: black;
+            transition: border-scolor 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #00f4ff;
+            box-shadow: 0 0 8px #00f4ff;
+            outline: none;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: black;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <button><a href="index.html">Back to Home Page</a></button>
+
+    <div class="content-wrapper">
+        <header>
+            <h1> <font color="green">Employee payroll</font></h1>
+        </header>
+
+        <div class="container">
+            <form id="payrollForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Employee Name" required>
+                    <input type="number" id="daysWorked" placeholder="Days Worked" min="0" required>
+                    <input type="number" id="dailyRate" placeholder="Daily Rate" min="0" required>
+                    <input type="number" id="deduction" placeholder="Deduction" min="0" required>
+                </div>
+                <button type="submit">Add Employee</button>
+            </form>
+
+            <table id="payrollTable">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Employee Name</th>
+                        <th>Days Worked</th>
+                        <th>Daily Rate</th>
+                        <th>Gross Pay</th>
+                        <th>Deduction Amount</th>
+                        <th>Net Pay</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="deleteAll">Delete All</button>
+        </div>
+    </div>
+
+    <script>
+        const payrollTable = document.querySelector("#payrollTable tbody");
+        const payrollForm = document.getElementById("payrollForm");
+        const deleteAllBtn = document.getElementById("deleteAll");
+
+        let payrollData = [];
+
+        function renderTable() {
+            payrollTable.innerHTML = "";
+            payrollData.forEach((employee, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.daysWorked}</td>
+                    <td>${employee.dailyRate}</td>
+                    <td>${employee.grossPay.toFixed(2)}</td>
+                    <td>${employee.deduction.toFixed(2)}</td>
+                    <td>${employee.netPay.toFixed(2)}</td>
+                    <td>
+                        <button onclick="deleteEmployee(${index})">Delete</button>
+                    </td>
+                `;
+                payrollTable.appendChild(row);
+            });
+        }
+
+        payrollForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const daysWorked = parseFloat(document.getElementById("daysWorked").value);
+            const dailyRate = parseFloat(document.getElementById("dailyRate").value);
+            const deduction = parseFloat(document.getElementById("deduction").value);
+
+            const grossPay = daysWorked * dailyRate;
+            const netPay = grossPay - deduction;
+
+            payrollData.push({ name, daysWorked, dailyRate, deduction, grossPay, netPay });
+            renderTable();
+            payrollForm.reset();
+        });
+
+        window.deleteEmployee = (index) => {
+            if (confirm("Are you sure you want to obliterate this data?")) {
+                payrollData.splice(index, 1);
+                renderTable();
+            }
+        };
+
+        deleteAllBtn.addEventListener("click", () => {
+            if (confirm("Delete all table?")) {
+                if (confirm("This action cannot be undone. Confirm?")) {
+                    payrollData = [];
+                    renderTable();
+                }
+            }
+        });
+
+        
+    </script>
+</body>
+</html>
